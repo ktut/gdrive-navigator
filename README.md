@@ -14,6 +14,12 @@ npm install
 npm run dev
 ```
 
+### Run tests
+
+```sh
+npm run test:e2e
+```
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh

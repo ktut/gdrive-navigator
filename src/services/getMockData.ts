@@ -10,7 +10,7 @@ export function getMockData(): File[] {
             // a real db would have a unique id for each file/folder, this will do for a demo
         files.push({
             id: Math.floor(Math.random() * (maxId - minId + 1)) + minId,
-            filename: i < 4 ? `file${i + 1}.txt` : `folder${i - 3}`, // 5 files, 6 folders
+            filename: i < 4 ? `file${i + 1}.txt` : `folder${i - 3}`, // 4 files, 2 folders
             type: i < 4 ? 'file' : 'folder',
             contents: null,
         });
