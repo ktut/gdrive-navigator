@@ -19,8 +19,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #app {
-  padding: 2rem;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    scroll-behavior: smooth;
 }
 </style>
 
