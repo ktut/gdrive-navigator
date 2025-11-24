@@ -1,5 +1,5 @@
 export interface File {
-    id: number,
+    id: string,
     filename: string,
     type: "file" | "folder",
     contents: File[] | null,

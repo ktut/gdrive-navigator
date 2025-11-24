@@ -19,7 +19,7 @@ export default defineComponent({
     handleToggleFolder(folder: File) {
       (this as any).toggleFolder(folder)
     },
-    checkExpanded(folderId: number): boolean {
+    checkExpanded(folderId: string): boolean {
       return (this as any).isExpanded(folderId)
     },
   },

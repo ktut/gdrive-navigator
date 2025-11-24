@@ -1,18 +1,31 @@
-import { File } from '../types/files';
+// Google Drive-like schema: { id, name, mimeType }
+export interface DriveFileLike {
+    id: string;
+    name: string;
+    mimeType: string;
+}
 
-export function getMockData(): File[] {
+// Absolute overkill for generating a random string for unique IDs
+function generateRandomId(): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 32; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
+export function getMockData(): DriveFileLike[] {
     const length = 6; // Like the provided test data, this is a fixed length
-    const files: File[] = [];
+    const files: DriveFileLike[] = [];
     
     for (let i = 0; i < length; i++) {
-        const minId = 1,
-            maxId = 10000;
-            // a real db would have a unique id for each file/folder, this will do for a demo
+        const id = generateRandomId();
+        const isFolder = i >= 4;
         files.push({
-            id: Math.floor(Math.random() * (maxId - minId + 1)) + minId,
-            filename: i < 4 ? `file${i + 1}.txt` : `folder${i - 3}`, // 4 files, 2 folders
-            type: i < 4 ? 'file' : 'folder',
-            contents: null,
+            id: id,
+            name: isFolder ? `folder${i - 3}` : `file${i + 1}.txt`, // 4 files, 2 folders
+            mimeType: isFolder ? 'application/vnd.google-apps.folder' : 'text/plain',
         });
     }
     
