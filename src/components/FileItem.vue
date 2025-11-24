@@ -27,10 +27,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="file-item" :class="{ 'is-folder': file.type === 'folder', 'is-file': file.type === 'file' }">
+  <button class="file-item" :class="{ 'is-folder': file.type === 'folder', 'is-file': file.type === 'file' }"
+      @keydown.enter="handleToggleFolder(file)">
     <div
       v-if="file.type === 'folder'"
       class="folder-item"
+      tabindex="0"
       @click="handleToggleFolder(file)"
     >
       <span class="arrow" :class="{ expanded: checkExpanded(file.id) }">
@@ -53,12 +55,20 @@ export default defineComponent({
         :depth="depth + 1"
       />
     </div>
-  </div>
+  </button>
 </template>
 
 <style lang="scss" scoped>
 .file-item {
-    margin: 0.25rem 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: unset;
+  border: 1px solid transparent;
+  &:focus {
+    border-color: $secondary-color;
+  }
+    margin: 0.5rem 0;
     cursor: default;
     
     &.is-folder {
