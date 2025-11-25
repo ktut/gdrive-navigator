@@ -66,6 +66,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .file-item {
   display: block;
   width: 100%;
@@ -73,7 +75,7 @@ export default defineComponent({
   background: unset;
   border: 2px solid transparent;
   &:focus {
-    border-color: darken($label-yellow, 20%);
+    border-color: color.adjust($label-yellow, $lightness: -20%);
     outline: none;
   }
     margin: 0.4rem 0;
@@ -85,8 +87,8 @@ export default defineComponent({
             display: flex;
             align-items: center;
             padding: 0.7rem 1rem;
-            background: linear-gradient(135deg, $label-yellow 0%, darken($label-yellow, 5%) 100%);
-            border: 2px solid darken($label-yellow, 15%);
+            background: linear-gradient(135deg, $label-yellow 0%, color.adjust($label-yellow, $lightness: -5%) 100%);
+            border: 2px solid color.adjust($label-yellow, $lightness: -15%);
             border-radius: 2px;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
@@ -104,14 +106,14 @@ export default defineComponent({
                 left: 10px;
                 width: 60px;
                 height: 6px;
-                background: linear-gradient(135deg, darken($label-yellow, 10%) 0%, darken($label-yellow, 15%) 100%);
+                background: linear-gradient(135deg, color.adjust($label-yellow, $lightness: -10%) 0%, color.adjust($label-yellow, $lightness: -15%) 100%);
                 border-radius: 2px 2px 0 0;
-                border: 2px solid darken($label-yellow, 15%);
+                border: 2px solid color.adjust($label-yellow, $lightness: -15%);
                 border-bottom: none;
             }
 
             &:hover {
-                background: linear-gradient(135deg, lighten($label-yellow, 5%) 0%, $label-yellow 100%);
+                background: linear-gradient(135deg, color.adjust($label-yellow, $lightness: 5%) 0%, $label-yellow 100%);
                 transform: translateY(-1px);
                 box-shadow:
                     inset 0 1px 0 rgba(255,255,255,0.4),
@@ -134,7 +136,7 @@ export default defineComponent({
             padding: 0.6rem 1rem;
             padding-left: 2rem;
             background: $paper-color;
-            border: 1px solid darken($paper-color, 15%);
+            border: 1px solid color.adjust($paper-color, $lightness: -15%);
             border-radius: 1px;
             box-shadow:
                 inset 0 1px 0 rgba(255,255,255,0.5),
@@ -142,7 +144,7 @@ export default defineComponent({
             transition: background-color 0.2s;
 
             &:hover {
-                background: lighten($paper-color, 2%);
+                background: color.adjust($paper-color, $lightness: 2%);
             }
         }
     }

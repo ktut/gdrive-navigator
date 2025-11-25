@@ -177,6 +177,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 #app {
     display: flex;
     flex-direction: column;
@@ -199,7 +201,7 @@ export default defineComponent({
     max-width: 900px;
     margin-bottom: 2rem;
     padding: 1.5rem 2rem;
-    background: linear-gradient(135deg, $drawer-wood 0%, darken($drawer-wood, 10%) 100%);
+    background: linear-gradient(135deg, $drawer-wood 0%, color.adjust($drawer-wood, $lightness: -10%) 100%);
     border: 3px solid $metal-accent;
     border-radius: 4px;
     box-shadow:
@@ -323,7 +325,7 @@ export default defineComponent({
     width: 100%;
     max-width: 900px;
     background:
-        linear-gradient(135deg, $drawer-light 0%, darken($drawer-light, 8%) 100%);
+        linear-gradient(135deg, $drawer-light 0%, color.adjust($drawer-light, $lightness: -8%) 100%);
     border: 4px solid $metal-accent;
     border-radius: 2px;
     padding: 3rem 1.5rem;
@@ -344,7 +346,7 @@ export default defineComponent({
         background: repeating-linear-gradient(
             90deg,
             $metal-accent 0px,
-            darken($metal-accent, 10%) 2px,
+            color.adjust($metal-accent, $lightness: -10%) 2px,
             $metal-accent 4px
         );
         border-bottom: 1px solid rgba(0,0,0,0.3);
@@ -359,7 +361,7 @@ export default defineComponent({
         width: 80px;
         height: 20px;
         background: linear-gradient(180deg, #8C8C8C 0%, #6B6B6B 100%);
-        border: 2px solid darken($metal-accent, 15%);
+        border: 2px solid color.adjust($metal-accent, $lightness: -15%);
         border-radius: 3px;
         box-shadow:
             inset 0 1px 2px rgba(0,0,0,0.4),
