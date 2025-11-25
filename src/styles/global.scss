@@ -13,9 +13,12 @@ body {
   font-size: $font-size-base;
   color: $text-color;
   background-color: $background-color;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('/src/assets/wood-texture.jpg');
+  background-repeat: repeat;
+  background-size: 600px auto;
 }
 
 #app {
@@ -23,9 +26,11 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: bold;
   color: $text-color;
   margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 

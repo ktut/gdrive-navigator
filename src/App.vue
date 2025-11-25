@@ -171,11 +171,15 @@ export default defineComponent({
 #app {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 3rem 2rem;
     scroll-behavior: smooth;
+    background: transparent;
+    @media (max-width: $breakpoint-mobile) {
+      padding: 4rem 1rem;
+    }
 }
 
 .header {
@@ -183,8 +187,45 @@ export default defineComponent({
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 800px;
-    margin-bottom: 1rem;
+    max-width: 900px;
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, $drawer-wood 0%, darken($drawer-wood, 10%) 100%);
+    border: 3px solid $metal-accent;
+    border-radius: 4px;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 4px 8px rgba(0,0,0,0.3),
+        0 1px 2px rgba(0,0,0,0.2);
+    position: relative;
+    @media (max-width: $breakpoint-mobile) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        height: 2px;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255,255,255,0.1) 20%,
+            rgba(255,255,255,0.1) 80%,
+            transparent
+        );
+    }
+
+    h1 {
+        color: $label-yellow;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        letter-spacing: 0.05em;
+        font-weight: bold;
+        margin: 0;
+    }
 }
 
 .auth-controls {
@@ -196,16 +237,33 @@ export default defineComponent({
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid $secondary-color;
-    border-radius: 0.5rem;
-    background-color: white;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid $metal-accent;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #E8E8E8 0%, #C0C0C0 100%);
     cursor: pointer;
     font-size: 0.875rem;
-    transition: background-color 0.2s;
+    font-family: $font-family-base;
+    font-weight: bold;
+    color: $text-color;
+    transition: all 0.2s;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        0 2px 4px rgba(0,0,0,0.3);
 
     &:hover:not(:disabled) {
-        background-color: rgba(0, 0, 0, 0.05);
+        background: linear-gradient(180deg, #F0F0F0 0%, #D0D0D0 100%);
+        transform: translateY(-1px);
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.5),
+            0 3px 6px rgba(0,0,0,0.3);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+        box-shadow:
+            inset 0 1px 2px rgba(0,0,0,0.2),
+            0 1px 2px rgba(0,0,0,0.2);
     }
 
     &:disabled {
@@ -219,13 +277,14 @@ export default defineComponent({
 }
 
 .signout-button {
-    background-color: #f5f5f5;
+    background: linear-gradient(180deg, #D8D8D8 0%, #B0B0B0 100%);
 }
 
 .loading {
     padding: 2rem;
     text-align: center;
-    color: #666;
+    color: $text-color;
+    font-weight: bold;
 }
 
 .config-warning {
@@ -235,7 +294,7 @@ export default defineComponent({
     border: 1px solid #ffc107;
     border-radius: 0.5rem;
     color: #856404;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
 
     p {
@@ -253,10 +312,50 @@ export default defineComponent({
 
 .file-list {
     width: 100%;
-    max-width: 800px;
-    border-radius: 1rem;
-    border: 1px solid $secondary-color;
-    padding: 1rem;
+    max-width: 900px;
+    background:
+        linear-gradient(135deg, $drawer-light 0%, darken($drawer-light, 8%) 100%);
+    border: 4px solid $metal-accent;
+    border-radius: 2px;
+    padding: 3rem 1.5rem;
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.2),
+        inset 0 -1px 0 rgba(255,255,255,0.1),
+        0 8px 16px rgba(0,0,0,0.4),
+        0 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: repeating-linear-gradient(
+            90deg,
+            $metal-accent 0px,
+            darken($metal-accent, 10%) 2px,
+            $metal-accent 4px
+        );
+        border-bottom: 1px solid rgba(0,0,0,0.3);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 20px;
+        background: linear-gradient(180deg, #8C8C8C 0%, #6B6B6B 100%);
+        border: 2px solid darken($metal-accent, 15%);
+        border-radius: 3px;
+        box-shadow:
+            inset 0 1px 2px rgba(0,0,0,0.4),
+            0 1px 0 rgba(255,255,255,0.1);
+    }
 }
 
 </style>

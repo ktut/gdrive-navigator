@@ -71,37 +71,82 @@ export default defineComponent({
   width: 100%;
   text-align: left;
   background: unset;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   &:focus {
-    border-color: $secondary-color;
+    border-color: darken($label-yellow, 20%);
+    outline: none;
   }
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
     cursor: default;
-    
+
     &.is-folder {
         .folder-item {
             cursor: pointer;
             display: flex;
             align-items: center;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-            
+            padding: 0.7rem 1rem;
+            background: linear-gradient(135deg, $label-yellow 0%, darken($label-yellow, 5%) 100%);
+            border: 2px solid darken($label-yellow, 15%);
+            border-radius: 2px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            transition: all 0.2s;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.3),
+                0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            font-weight: bold;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: -6px;
+                left: 10px;
+                width: 60px;
+                height: 6px;
+                background: linear-gradient(135deg, darken($label-yellow, 10%) 0%, darken($label-yellow, 15%) 100%);
+                border-radius: 2px 2px 0 0;
+                border: 2px solid darken($label-yellow, 15%);
+                border-bottom: none;
+            }
+
             &:hover {
-                background-color: rgba(0, 0, 0, 0.05);
+                background: linear-gradient(135deg, lighten($label-yellow, 5%) 0%, $label-yellow 100%);
+                transform: translateY(-1px);
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.4),
+                    0 3px 6px rgba(0,0,0,0.25);
+            }
+
+            &:active {
+                transform: translateY(0);
+                box-shadow:
+                    inset 0 1px 2px rgba(0,0,0,0.1),
+                    0 1px 2px rgba(0,0,0,0.15);
             }
         }
     }
-    
+
     &.is-file {
         .file-item-content {
             display: flex;
             align-items: center;
-            padding: 0.5rem;
-            padding-left: 1.5rem;
+            padding: 0.6rem 1rem;
+            padding-left: 2rem;
+            background: $paper-color;
+            border: 1px solid darken($paper-color, 15%);
+            border-radius: 1px;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.5),
+                0 1px 2px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+
+            &:hover {
+                background: lighten($paper-color, 2%);
+            }
         }
     }
-    
+
     &.nested {
         margin-left: 0;
     }
@@ -113,26 +158,39 @@ export default defineComponent({
     margin-right: 0.5rem;
     font-size: 0.75rem;
     transition: transform 0.2s;
+    color: $text-color;
+    font-weight: bold;
 }
 
 .folder-icon {
     margin-right: 0.5rem;
     flex-shrink: 0;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));
 }
 
 .file-icon {
     margin-right: 0.5rem;
     flex-shrink: 0;
+    filter: drop-shadow(0.5px 0.5px 0.5px rgba(0,0,0,0.1));
 }
 
 .filename {
     user-select: none;
+    color: $text-color;
+    font-family: $font-family-base;
+    font-weight: 700;
+    letter-spacing: 0.08em;
 }
 
 .nested-files {
-    margin-left: 1rem;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 0.5rem;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    border-left: 3px solid rgba(107, 107, 107, 0.3);
+    padding-left: 1rem;
+    background: linear-gradient(90deg,
+        rgba(212, 165, 116, 0.2) 0%,
+        transparent 10%
+    );
 }
 </style>
 
