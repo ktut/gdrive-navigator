@@ -1,6 +1,6 @@
 # About
 IMPORTANT:
-This is NOT a standard method of integrating Google Drive authentication. In a production app, you should use your own backend service to call this API.
+This is NOT a standard method of integrating Google Drive authentication. In a production app, you should use your own backend service to call the Google Drive API on the behalf of the user.
 This is a Vue 3 TypeScript application for navigating and displaying the folder contents of a Google Account's Google Drive.
 
 ## How was this built?
@@ -9,7 +9,9 @@ Initially I was uncomfortable with the Google Drive API, as it seemed pretty com
 
 Next, I added E2E tests. In a production application, you might run these on commit, or on build in your code repository (depending on workflow).
 
-Lastly, I integrated the real API.
+Next, I tried to see if there were any client-side packages, but all I was able to find was the standard script integration (the npm packages were all made by third parties and not trustworth). Using the standard script api, I integrated the real API. I used Cursor for some assitance here, mainly with the types (had no idea how to type the responses). 
+
+The application will run just fine with mock data, but if you want to connect your GDrive, please follow the below instructions.
 
 
 ## Project Setup
@@ -42,7 +44,7 @@ Each developer needs to set up their own Google OAuth credentials:
    - Click **Create Credentials** > **OAuth 2.0 Client ID**
    - Application type: **Web application**
    - Name: "GDrive Navigator" (or any name)
-   - **Authorized JavaScript origins**: Add `http://localhost:5173`
+   - **Authorized JavaScript origins**: Add `http://localhost:5173` (or whatever port your app ends up running on)
    - Click **Create**
    - Copy the **Client ID**
 
@@ -81,7 +83,7 @@ npm run build
 npm run preview
 ```
 
-## Project Structure
+## Project Structure in this Repo
 
 - Components use Vue Options API with script, template, and style tags in that order
 - Global SASS styles are configured via `src/styles/global.scss`
