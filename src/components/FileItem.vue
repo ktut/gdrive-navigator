@@ -38,9 +38,16 @@ export default defineComponent({
       <span class="arrow" :class="{ expanded: checkExpanded(file.id) }">
         {{ checkExpanded(file.id) ? '▼' : '▶' }}
       </span>
+      <svg class="folder-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.5 2.5C1.5 1.94772 1.94772 1.5 2.5 1.5H5.5L6.5 3.5H13.5C14.0523 3.5 14.5 3.94772 14.5 4.5V13.5C14.5 14.0523 14.0523 14.5 13.5 14.5H2.5C1.94772 14.5 1.5 14.0523 1.5 13.5V2.5Z" fill="#FDB62F" stroke="#E39F1E" stroke-width="1"/>
+      </svg>
       <span class="filename">{{ file.filename }}</span>
     </div>
     <div v-else class="file-item-content">
+      <svg class="file-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 1.5C2.44772 1.5 2 1.94772 2 2.5V13.5C2 14.0523 2.44772 14.5 3 14.5H13C13.5523 14.5 14 14.0523 14 13.5V5.5L9.5 1.5H3Z" fill="white" stroke="#666" stroke-width="1"/>
+        <path d="M9.5 1.5V5.5H14" stroke="#666" stroke-width="1" stroke-linejoin="round"/>
+      </svg>
       <span class="filename">{{ file.filename }}</span>
     </div>
     
@@ -106,6 +113,16 @@ export default defineComponent({
     margin-right: 0.5rem;
     font-size: 0.75rem;
     transition: transform 0.2s;
+}
+
+.folder-icon {
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.file-icon {
+    margin-right: 0.5rem;
+    flex-shrink: 0;
 }
 
 .filename {
