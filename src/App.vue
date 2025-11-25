@@ -25,6 +25,7 @@ export default defineComponent({
       expandedFolders: new Set<string>(),
       isAuthenticated: false,
       isLoading: false,
+      searchQuery: '',
     }
   },
   mounted() {
@@ -38,6 +39,11 @@ export default defineComponent({
         gisLoaded()
       }
     }
+  },
+  computed: {
+    filteredFiles() {
+      return this.files.filter(file => file.filename.trim().toLowerCase().includes(this.searchQuery.trim().toLowerCase()))
+    },
   },
   methods: {
     onAuthClick() {
@@ -153,12 +159,15 @@ export default defineComponent({
         </button>
       </div>
     </nav>
+    <div v-if="!isLoading && files.length > 0" class="search-container">
+      <input type="text" v-model="searchQuery" placeholder="Search files..." class="search-input" />
+    </div>
     <div v-if="isLoading && files.length === 0" class="loading">
       Loading files...
     </div>
     <div v-else class="file-list">
       <FileItem
-        v-for="file in files"
+        v-for="file in filteredFiles"
         :key="file.id"
         :file="file"
         :depth="0"
@@ -356,6 +365,21 @@ export default defineComponent({
             inset 0 1px 2px rgba(0,0,0,0.4),
             0 1px 0 rgba(255,255,255,0.1);
     }
+}
+
+.search-container {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 2px solid $metal-accent;
+  border-radius: 2px;
+  font-size: 1rem;
 }
 
 </style>
